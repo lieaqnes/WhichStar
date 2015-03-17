@@ -1,0 +1,13 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "name": "which_star",
+  "description": "A application using angular, node, gulp",
+  "repository": "https://github.com/lieaqnes/WhichStar",
+  "devDependencies": {
+    "http-server": "^0.6.1"
+  },
+  "scripts": {
+    "start": "http-server -a 0.0.0.0 -p 8000"
+  }
+}
