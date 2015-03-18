@@ -5,6 +5,8 @@
   "description": "A application using angular, node, gulp",
   "repository": "https://github.com/lieaqnes/WhichStar",
   "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-load-plugins": "^0.8.1",
     "http-server": "^0.6.1"
   },
   "scripts": {
