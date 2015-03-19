@@ -12,6 +12,21 @@ gulp.task('default', function() {
   });
 });
 
+gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+
+gulp.task('html', ['styles'], function() {
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
+
+  return gulp.src('app/*.html')
+    .pipe(assets)
+    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.csso()))
+    .pipe(assets.restore())
+    .pipe($.useref())
+    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('styles', function() {
   return gulp.src('app/styles/*.scss')
     .pipe($.sourcemaps.init())
