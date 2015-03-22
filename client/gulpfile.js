@@ -5,30 +5,10 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
-gulp.task('default', function() {
-  // place code for your default task here
-  gulp.watch('js/**/*.js', function(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-  });
-});
-
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('html', ['styles'], function() {
-  var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
-
-  return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.csso()))
-    .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
-    .pipe(gulp.dest('dist'));
-});
-
 gulp.task('styles', function() {
-  return gulp.src('app/styles/*.scss')
+  return gulp.src('app/styles/*.sass')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
@@ -44,6 +24,33 @@ gulp.task('styles', function() {
     .pipe(reload({stream: true}));
 });
 
+gulp.task('html', ['styles'], function() {
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
+
+  return gulp.src('app/*.html')
+    .pipe(assets)
+    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.csso()))
+    .pipe(assets.restore())
+    .pipe($.useref())
+    //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('dist'));
+});
+gulp.task('js', function() {
+  return gulp.src('**/*.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest('dist/styles'));
+});
+
+
+gulp.task('jshint', function() {
+  return gulp.src('app/scripts/**/*.js')
+    .pipe(reload({stream: true, once: true}))
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
 gulp.task('serve', function() {
   browserSync({
     notify: false,
@@ -55,7 +62,6 @@ gulp.task('serve', function() {
       }
     }
   });
-
   // watch for changes
   gulp.watch([
     'app/*.html',
@@ -63,7 +69,33 @@ gulp.task('serve', function() {
     'app/img/**/*'
   ]).on('change', reload);
 
-  //gulp.watch('app/styles/**/*.<%= includeSass ? 'scss' : 'css' %>', ['styles']);
-  //gulp.watch('bower.json', ['wiredep', 'fonts']);
+  gulp.watch('app/styles/**/*.scss', ['styles']);
+});
+
+gulp.task('serve:dist', function() {
+  browserSync({
+    notify: false,
+    port: 9000,
+    server: {
+      baseDir: ['dist']
+    }
+  });
+
+    // watch for changes
+  gulp.watch([
+    'app/*.html',
+    'app/js/**/*.js',
+    'app/img/**/*'
+  ]).on('change', reload);
+
+  gulp.watch('app/styles/**/*.scss', ['styles']);
+});
+
+gulp.task('build', ['html'], function() {
+  return gulp.src('dist/**').pipe($.size({title: 'build', gzip: true}));
+});
+
+gulp.task('default', ['clean'], function() {
+  gulp.start('build');
 });
 
