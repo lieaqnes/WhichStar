@@ -9,7 +9,7 @@ app.controller('helloWorld', function($scope) {
 app.directive('hello', function() {
   return {
     restrict: 'E',
-    template: '<div>Hi everyone!</div>',
+    template: '<div class="red">Hi everyone!</div>',
     replace: true
   };
 });

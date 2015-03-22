@@ -51,14 +51,15 @@ gulp.task('jshint', function() {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', ['html'], function() {
   browserSync({
     notify: false,
     port: 9000,
     server: {
       baseDir: ['app', '.tmp'],
       routes: {
-        '/bower_components': 'bower_components'
+        '/bower_components': 'bower_components',
+        '../.tmp/styles': 'styles'
       }
     }
   });
@@ -70,6 +71,10 @@ gulp.task('serve', function() {
   ]).on('change', reload);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
+});
+
+gulp.task('build', ['html'], function() {
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('serve:dist', function() {
@@ -89,10 +94,6 @@ gulp.task('serve:dist', function() {
   ]).on('change', reload);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
-});
-
-gulp.task('build', ['html'], function() {
-  return gulp.src('dist/**').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], function() {
