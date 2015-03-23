@@ -29,19 +29,13 @@ gulp.task('html', ['styles'], function() {
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.js', $.uglify({mangle: false})))
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
-    //.pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
-gulp.task('js', function() {
-  return gulp.src('**/*.js')
-    .pipe($.uglify())
-    .pipe(gulp.dest('dist/styles'));
-});
-
 
 gulp.task('jshint', function() {
   return gulp.src('app/scripts/**/*.js')
@@ -77,7 +71,7 @@ gulp.task('build', ['html'], function() {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
-gulp.task('serve:dist', function() {
+gulp.task('serve:dist', ['build'], function() {
   browserSync({
     notify: false,
     port: 9000,
