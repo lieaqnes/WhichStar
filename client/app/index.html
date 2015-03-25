@@ -10,11 +10,17 @@
 </head>
 <body>
   <div ng-controller="helloWorld">
-    <p>{{greeting.text}},World</p>
+    <p>{{greeting}},World</p>
     <hello></hello>
-    <input ng-model="greeting.text"/>
+    <input ng-model="greeting"/>
   </div>
-  <!-- build:js js/vendor/angular.js -->
+  <div ng-controller="ListCtrl">
+    <ol>
+      <li ng-repeat="name in names">{{name}} from {{departure}}</li>
+    </ol>
+  </div>
+
+  <!-- build:js js/vendor.js -->
   <script src="bower_components/angular/angular.js"></script>
   <!-- endbuild -->
   <!-- build:js js/main.js -->
