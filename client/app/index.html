@@ -9,7 +9,7 @@
   <!-- endbuild -->
 </head>
 <body>
-  <div ng-controller="helloWorld">
+<!--   <div ng-controller="helloWorld">
     <p>{{greeting}},World</p>
     <hello></hello>
     <input ng-model="greeting"/>
@@ -18,13 +18,18 @@
     <ol>
       <li ng-repeat="name in names">{{name}} from {{departure}}</li>
     </ol>
+  </div> -->
+  <div ng-view>
   </div>
 
   <!-- build:js js/vendor.js -->
-  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/lib/angular.js"></script>
+  <script src="js/lib/angular-route.js"></script>
   <!-- endbuild -->
   <!-- build:js js/main.js -->
-  <script src="js/index.js"></script>
+  <!-- <script src="js/index.js"></script> -->
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
   <!-- endbuild -->
 </body>
 </html>

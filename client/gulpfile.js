@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var gutil = require('gulp-util');
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
@@ -29,7 +30,7 @@ gulp.task('html', ['styles'], function() {
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify({mangle: false})))
+    .pipe($.if('*.js', $.uglify({mangle: false}).on('error', gutil.log)))
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())

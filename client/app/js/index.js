@@ -1,5 +1,3 @@
-var app = angular.module('whichStarApp', []);
-
 app.controller('helloWorld', function($scope, $rootScope) {
   $scope.greeting = 'World';
   $rootScope.departure = 'Angular';
