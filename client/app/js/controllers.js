@@ -1,4 +1,5 @@
 var testCtrls = angular.module('testCtrls', []);
+
 testCtrls.controller('helloCtrl', function($scope, $rootScope) {
   $scope.pageName = 'World';
   $rootScope.departure = 'Angular';
