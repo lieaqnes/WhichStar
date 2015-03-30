@@ -28,7 +28,7 @@ gulp.task('styles', function() {
 gulp.task('html', ['styles'], function() {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
 
-  return gulp.src('app/*.html')
+  return gulp.src('app/**/*.html')
     .pipe(assets)
     .pipe($.if('*.js', $.uglify({mangle: false}).on('error', gutil.log)))
     .pipe($.if('*.css', $.csso()))
