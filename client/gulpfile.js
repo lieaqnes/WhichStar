@@ -9,7 +9,7 @@ var gutil = require('gulp-util');
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 gulp.task('styles', function() {
-  return gulp.src('app/styles/*.sass')
+  return gulp.src('app/styles/*.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet

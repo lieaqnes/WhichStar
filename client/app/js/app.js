@@ -7,6 +7,9 @@ app.config(function($routeProvider) {
   }).when('/list', {
     templateUrl: 'templates/list.html',
     controller: 'listCtrl'
+  }).when('/header', {
+    templateUrl: 'templates/header.html'
+    // controller: 'headerCtrl'
   }).otherwise({
     redirectTo: '/hello'
   });

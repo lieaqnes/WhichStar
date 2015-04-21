@@ -1,0 +1,26 @@
+.header{
+    height: $header-height;
+    background-color: $dark-blue;
+    font-size: $font-size-large;
+    line-height: $header-height;
+    ul {
+        margin: 0 auto;
+        list-style: none;
+        li {
+            text-align: center;
+            float:left;
+            width: 300px;
+            a{
+                color: $white;
+                display: block;
+            }
+            a:link, a:visited {
+                text-decoration: none;
+            }
+            a:hover, a:focus, a:active {
+                text-decoration: none;
+                background-color: $darker-blue;
+            }
+        }
+    }
+}

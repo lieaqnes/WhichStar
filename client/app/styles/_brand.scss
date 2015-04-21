@@ -1,0 +1,13 @@
+$header-height:     50px;
+
+$font-size-base:          14px !default;
+$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$gray:              #525252;
+$black:             #000;
+$white:             #FFF;
+$blue:              #2290DA;
+$dark-blue:         #003f87;
+$light-dark-blue:   #7A9EC8;
+$darker-blue:       #012F63;
