@@ -11,13 +11,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('index', {
       url: '/index',
       views: {
-        '': {
-          templateUrl: 'templates/home.html'
-        },
-        'main@index': {
+        'main': {
           templateUrl: 'templates/hello.html'
         },
-        'header@index': {
+        'header': {
           templateUrl: 'templates/header.html'
         }
       }
