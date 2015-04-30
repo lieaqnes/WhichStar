@@ -8,8 +8,16 @@
   <!-- endbuild -->
 </head>
 <body>
-    <div ui-view="header"></div>
-    <div ui-view="main"></div>
+    <div class="header">
+      <ul class="clearfix">
+          <li><a ui-sref="index" class="header-link">Home</a></li>
+          <li><a ui-sref="tech" class="header-link">Technical Introducation</a></li>
+          <li><a ui-sref="about" class="header-link">Contact</a></li>
+      </ul>
+    </div>
+    <div class="view-container">
+      <div ui-view="main" class="view-frame"></div>
+    </div>
 
   <!-- build:js js/vendor.js -->
   <script src="js/lib/angular.js"></script>

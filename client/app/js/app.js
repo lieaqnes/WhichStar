@@ -13,12 +13,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'main': {
           templateUrl: 'templates/hello.html'
-        },
-        'header': {
-          templateUrl: 'templates/header.html'
         }
       }
     })
+    .state('contact', {
+      url: '/contact',
+      views: {
+        'main': {
+          templateUrl: 'templates/about.html'
+        }
+      }
+    })
+    .state('tech', {
+      url: '/techIntro',
+      views: {
+        'main': {
+          templateUrl: 'templates/tech.html'
+        }
+      }
+    });
+
   // $routeProvider.when('/hello', {
   //   templateUrl: 'templates/hello.html',
   //   controller: 'helloCtrl'
