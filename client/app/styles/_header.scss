@@ -1,4 +1,4 @@
-.header{
+.nav-bar{
     height: $header-height;
     background-color: $dark-blue;
     font-size: $font-size-large;
@@ -6,6 +6,9 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07);
     z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 100%;
     ul {
         margin: 0 auto;
         list-style: none;
@@ -20,6 +23,7 @@
             }
             .header-link:link, .header-link:visited {
                 text-decoration: none;
+                background-color: $dark-blue;
             }
             .header-link:hover, .header-link:focus, .header-link:active {
                 text-decoration: none;

@@ -16,8 +16,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-    .state('contact', {
-      url: '/contact',
+    .state('about', {
+      url: '/about',
       views: {
         'main': {
           templateUrl: 'templates/about.html'
