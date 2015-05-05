@@ -1,11 +1,25 @@
 .home-container {
     min-height: 720px;
-    background: -webkit-linear-gradient($dark-blue 10%, $white 60%); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($dark-blue 10%, $white 60%); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($dark-blue 10%, $white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($dark-blue 10%, $white 60%); /* Standard syntax */
+    background: -webkit-linear-gradient($dark-green 10%, $green 60%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($dark-green 10%, $green 60%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($dark-green 10%, $green 60%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($dark-green 10%, $green 60%); /* Standard syntax */
     padding-top: 30px;
     .photo-input {
         height: 300px;
+        width: 100%;
+        margin: 0 auto;
+        .image-div {
+            position: relative;
+            max-width: 800px;
+            margin:0 auto;
+            text-align: center;
+            .image-box{
+                height: 240px;
+                width: 180px;
+                position: absolute;
+                border: 10px solid $white;
+            }
+        }
     }
 }
