@@ -1,4 +1,4 @@
-var app = angular.module('whichStarApp', ['ui.router', 'testCtrls']);
+var app = angular.module('whichStarApp', ['ui.router', 'testCtrls', 'ngAnimate']);
 
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
