@@ -13,34 +13,36 @@
             margin:0 auto;
             text-align: center;
             max-width: 1440px;
-            .image-item {
-                height: 240px;
-                width: 180px;
-                float: left;
-            }
-            #image-item-1 {
-                background: url(/img/jiangwenli.jpeg) no-repeat center;
-                background-size: 370px;
-            }
-            #image-item-2 {
-                background: url(/img/sunli.jpg) no-repeat center;
-                background-size: 200px;
-            }
-            #image-item-3 {
-                background: url(/img/liangchaowei.jpg) no-repeat center;
-                background-size: 200px;
-            }
-            #image-item-4 {
-                background: url(/img/anglebaby.jpg) no-repeat center;
-                background-size: 200px;
-            }
-            #image-item-5 {
-                background: url(/img/lingengxin.jpg) no-repeat center;
-                background-size: 200px;
-            }
-            #image-item-6 {
-                background: url(/img/qinhailu.gif) no-repeat center;
-                background-size: 200px;
+            .image-list {
+                width: 800px;
+                height: 360px;
+                position: relative;
+                .image-btn {
+                    position: absolute;
+                    height: 360px;
+                    width: 50px;
+                    top: 0;
+                    background-color: red;
+                    z-index: 10;
+                    &.image-prev-btn {
+                        left: 0;
+                    }
+                    &.image-next-btn {
+                        right: 0;
+                    }
+                }
+                ul {
+                    width: 800px;
+                    height: 360px;
+                    li {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
             }
             .image-box{
                 height: 240px;
