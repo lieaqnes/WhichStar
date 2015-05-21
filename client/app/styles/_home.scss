@@ -17,13 +17,20 @@
                 width: 800px;
                 height: 360px;
                 position: relative;
+                margin: auto;
                 .image-btn {
                     position: absolute;
-                    height: 360px;
-                    width: 50px;
-                    top: 0;
-                    background-color: red;
+                    height: 60px;
+                    width: 40px;
+                    top: 50%;
+                    margin-top: -30px;
+                    font-size: $font-size-larger;
+                    color: $white;
+                    background-color: $light-gray;
                     z-index: 10;
+                    line-height: 60px;
+                    font-family: "simsun";
+                    @include opacity(.5);
                     &.image-prev-btn {
                         left: 0;
                     }
