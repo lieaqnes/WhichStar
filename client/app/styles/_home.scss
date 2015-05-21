@@ -30,6 +30,7 @@
                     z-index: 10;
                     line-height: 60px;
                     font-family: "simsun";
+                    cursor: pointer;
                     @include opacity(.5);
                     &.image-prev-btn {
                         left: 0;
