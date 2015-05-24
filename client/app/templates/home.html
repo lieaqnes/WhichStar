@@ -4,12 +4,8 @@
             <div class="image-list">
                 <div class="image-btn image-prev-btn"><</div>
                 <div class="image-btn image-next-btn">></div>
-                <ul>
-                    <li><a href="#"><img src="/img/1.jpg"></a></li>
-                    <li><a href="#"><img src="/img/2.jpg"></a></li>
-                    <li><a href="#"><img src="/img/3.jpg"></a></li>
-                    <li><a href="#"><img src="/img/4.jpg"></a></li>
-                    <li><a href="#"><img src="/img/5.jpg"></a></li>
+                <ul ng-repeat="imageurl in imagelist">
+                    <li><a href="#"><img src="{{imageurl}}"></a></li>
                 </ul>
             </div>
             <div class="image-box"></div>

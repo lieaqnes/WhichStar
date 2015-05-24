@@ -1,4 +1,4 @@
-var app = angular.module('whichStarApp', ['ui.router', 'testCtrls', 'ngAnimate']);
+var app = angular.module('whichStarApp', ['ui.router', 'IndexCtrls', 'ngAnimate']);
 
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
@@ -12,7 +12,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/index',
       views: {
         'main': {
-          templateUrl: 'templates/hello.html'
+          templateUrl: 'templates/home.html',
+          controller: 'homeCtrl'
+        },
+        'nav': {
+          templateUrl: 'templates/nav.html'
         }
       }
     })
@@ -21,6 +25,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'main': {
           templateUrl: 'templates/about.html'
+        },
+        'nav': {
+          templateUrl: 'templates/nav.html'
         }
       }
     })
@@ -29,6 +36,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'main': {
           templateUrl: 'templates/tech.html'
+        },
+        'nav': {
+          templateUrl: 'templates/nav.html'
         }
       }
     });

@@ -1,9 +1,10 @@
-var testCtrls = angular.module('testCtrls', []);
-testCtrls.controller('helloCtrl', function($scope, $rootScope) {
-  $scope.pageName = 'World';
-  $rootScope.departure = 'Angular';
+var HomeCtrls = angular.module('IndexCtrls', []);
+HomeCtrls.controller('homeCtrl', function($scope, $http) {
+    $http.get('/data/imagelist.json').success(function(data) {
+        $scope.imagelist = data.imageURL;
+    });
 });
 
-testCtrls.controller('listCtrl', function($scope) {
+HomeCtrls.controller('listCtrl', function($scope) {
   $scope.names = ['Amy', 'Nicole', 'Leah', 'Jack'];
 });

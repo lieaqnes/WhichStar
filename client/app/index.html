@@ -9,13 +9,7 @@
 </head>
 <body>
     <header class="nav-bar">
-      <nav>
-        <ul class="clearfix">
-            <li><a ui-sref="index" class="header-link">Home</a></li>
-            <li><a ui-sref="tech" class="header-link">Technical Introducation</a></li>
-            <li><a ui-sref="about" class="header-link">Contact</a></li>
-        </ul>
-      </nav>
+      <div ui-view="nav"></div>
     </header>
     <div class="view-container">
       <div ui-view="main" class="view-frame"></div>
