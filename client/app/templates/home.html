@@ -1,13 +1,9 @@
 <div class="home-container">
     <div class="photo-input">
         <div class="image-div">
-            <div class="image-list">
-                <div class="image-btn image-prev-btn"><</div>
-                <div class="image-btn image-next-btn">></div>
-                <ul ng-repeat="imageurl in imagelist">
-                    <li><a href="#"><img src="{{imageurl}}"></a></li>
-                </ul>
-            </div>
+            <carousel ng-repeat="imageurl in imagelist">
+                <img src="{{imageurl}}">
+            </carousel>
             <div class="image-box"></div>
             <div class="image-button"></div>
         </div>
