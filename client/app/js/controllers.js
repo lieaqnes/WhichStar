@@ -1,4 +1,4 @@
-var HomeCtrls = angular.module('IndexCtrls', []);
+var HomeCtrls = angular.module('IndexCtrls', ['myCarousel']);
 HomeCtrls.controller('homeCtrl', function($scope, $http) {
     $http.get('/data/imagelist.json').success(function(data) {
         $scope.imagelist = data.imageURL;
