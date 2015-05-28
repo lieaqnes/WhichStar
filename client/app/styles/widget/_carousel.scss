@@ -24,16 +24,13 @@
             right: 0;
         }
     }
-    ul {
-        width: 800px;
-        height: 360px;
-        li {
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
+        .item {
             position: absolute;
             left: 0;
             top: 0;
-            img {
-                width: 100%;
-            }
         }
     }
 }
