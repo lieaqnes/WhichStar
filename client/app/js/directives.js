@@ -2,26 +2,43 @@ angular.module('myCarousel', [])
 .controller('CarouselController', ['$scope', '$element', function($scope, $element) {
     var self = this,
         slides = self.slides = $scope.slides = [],
-        currentIndex = -1;
+        currentIndex = -1,
+        quantity = 0;
 
+    //TODO: the width and height should be get for the DOM
     self.setting = {
-        'width': $element[0].offsetWidth,
-        'height': $element[0].offsetHeight,
-        'slideWidth': 0,//set for default. will change after first slide insertion
-        'slideHeight': 0,//set for default. will change after first slide insertion
-        'scale': .9,
+        'width': 800,
+        'height': 360,
+        'slideWidth': 270,//set for default. will change after first slide insertion
+        'slideHeight': 360,//set for default. will change after first slide insertion
+        'scale': 0.9,
         'speed': 500,
         'autoPlay': true
     };
+
+    function initCarcousel(item) {
+        //TODO: should init all the carousel with $element
+        var w = (self.setting.width - self.setting.slideWidth) / 2;
+        item.css({
+            top: 0,
+            left: w + 'px',
+            zIndex: 1
+        });
+    }
+
     self.addSlide = function(slide, element) {
         slide.$element = element;
         slides.push(slide);
-        if (slides.length === 1) {
-            this.setting.slideWidth = element[0].offsetWidth;
-        }
-    };
 
-    $scope.name = 'test';
+        quantity++;
+        if (quantity > 1) {
+
+        }
+        else {
+            initCarcousel(element);
+        }
+
+    };
 }])
 .directive('carousel', function() {
     return {
