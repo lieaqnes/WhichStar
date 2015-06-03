@@ -2,8 +2,7 @@ angular.module('myCarousel', [])
 .controller('CarouselController', ['$scope', '$element', function($scope, $element) {
     var self = this,
         slides = self.slides = $scope.slides = [],
-        currentIndex = -1,
-        quantity = 0;
+        currentIndex = -1;
 
     //TODO: the width and height should be get for the DOM
     self.setting = {
@@ -16,27 +15,28 @@ angular.module('myCarousel', [])
         'autoPlay': true
     };
 
-    function initCarcousel(item) {
+    self.initCarcousel = function(element) {
         //TODO: should init all the carousel with $element
         var w = (self.setting.width - self.setting.slideWidth) / 2;
-        item.css({
-            top: 0,
-            left: w + 'px',
-            zIndex: 1
-        });
-    }
+        console.log(element);
+        // item.css({
+        //     top: 0,
+        //     left: w + 'px',
+        //     zIndex: 1
+        // });
+    };
 
     self.addSlide = function(slide, element) {
         slide.$element = element;
         slides.push(slide);
 
-        quantity++;
-        if (quantity > 1) {
+        // quantity++;
+        // if (quantity > 1) {
 
-        }
-        else {
-            initCarcousel(element);
-        }
+        // }
+        // else {
+        //     initCarcousel(element);
+        // }
 
     };
 }])
@@ -46,7 +46,12 @@ angular.module('myCarousel', [])
         templateUrl: '/templates/widget/carousel.html',
         controller: 'CarouselController',
         transclude: true,
-        replace: true
+        replace: true,
+        compile: function compile() {
+          return function postLink(scope, iElement, iAttrs, controller) {
+            controller.initCarcousel(iElement);
+          };
+        }
     };
 })
 .directive('slide', function() {
