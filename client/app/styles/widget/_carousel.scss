@@ -17,10 +17,10 @@
         font-family: "simsun";
         cursor: pointer;
         @include opacity(.5);
-        &.image-prev-btn {
+        &.image-left-btn {
             left: 0;
         }
-        &.image-next-btn {
+        &.image-right-btn {
             right: 0;
         }
     }
@@ -29,10 +29,10 @@
         height: 100%;
         .item {
             position: absolute;
-            left: 0;
-            top: 0;
-            height: 360px;
-            width: 270px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }
