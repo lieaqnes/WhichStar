@@ -14,8 +14,11 @@
             text-align: center;
             max-width: 1440px;
             .image-box{
-                height: 240px;
-                width: 180px;
+                z-index: 100;
+                top: -10px;
+                left: 539px;
+                height: 360px;
+                width: 270px;
                 position: absolute;
                 border: 10px solid $white;
             }

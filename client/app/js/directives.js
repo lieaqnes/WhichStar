@@ -1,5 +1,5 @@
 angular.module('myCarousel', [])
-.controller('CarouselController', ['$scope', '$element', function($scope, $element) {
+.controller('CarouselController', ['$scope', '$element', '$interval', function($scope, $element, $interval) {
     var self = this,
         slides = self.slides = $scope.slides = [],
         currentIndex = -1;
@@ -13,6 +13,19 @@ angular.module('myCarousel', [])
     $scope.right = function() {
         rotate('right');
     };
+    $scope.autoPlay = function() {
+        console.log('play');
+        if (self.setting.autoPlay) {
+            self.autoPlay();
+        }
+    };
+
+    $scope.stopPlay = function() {
+        console.log('stop');
+        if (self.setting.autoPlay) {
+            self.stopPlay();
+        }
+    };
     self.setting = {
         'width': 1200,
         'height': 360,
@@ -21,12 +34,14 @@ angular.module('myCarousel', [])
         'scale': 0.9,
         'opacity': 0.2,
         'speed': 500,
-        'autoPlay': true
+        'autoPlay': true,
+        'delay': 3000
     };
 
     function rotate(dir) {
         if (dir === 'left') {
-            currentIndex = currentIndex + 1;
+            currentIndex = (currentIndex + 1) % self.slides.length;
+
             var firstItem = self.slides[0].$element,
                 fwidth = firstItem.css('width'),
                 fheight = firstItem.css('height'),
@@ -66,13 +81,50 @@ angular.module('myCarousel', [])
             });
         }
         else if (dir === 'right') {
-            angular.forEach(self.slides, function(value, key) {
-                var prev = self.slides[(key - 1 + self.slides.length) % self.slides.length];
-                console.log(prev.$element.html());
+            currentIndex = (currentIndex - 1 + self.slides.length) % self.slides.length;
+
+            var lastItem = self.slides[self.slides.length - 1].$element,
+                fwidth = lastItem.css('width'),
+                fheight = lastItem.css('height'),
+                fzIndex = lastItem.css('zIndex'),
+                fleft = lastItem.css('left'),
+                ftop = lastItem.css('top'),
+                fopacity = lastItem.css('opacity'),
+                sliceSlide = self.slides.slice(1, self.slides.length),
+                first = self.slides[0];
+
+            sliceSlide.reverse();
+            //set css except for the last one
+            angular.forEach(sliceSlide, function(value, key) {
+                var nextItem = self.slides[(self.slides.length - key - 2) % self.slides.length].$element,
+                    width = nextItem.css('width'),
+                    height = nextItem.css('height'),
+                    zIndex = nextItem.css('zIndex'),
+                    left = nextItem.css('left'),
+                    top = nextItem.css('top'),
+                    opacity = nextItem.css('opacity');
+                value.$element.css({
+                    width: width,
+                    height: height,
+                    zIndex: zIndex,
+                    left: left,
+                    top: top,
+                    opacity: opacity
+                });
+            });
+
+            //set last item css
+            first.$element.css({
+                width: fwidth,
+                height: fheight,
+                zIndex: fzIndex,
+                left: fleft,
+                top: ftop,
+                opacity: fopacity
             });
         }
 
-    };
+    }
 
     function initCarcousel(element) {
         var h = (self.setting.height - self.setting.slideHeight),
@@ -129,6 +181,20 @@ angular.module('myCarousel', [])
             sh = sh / self.setting.scale;
             sw = sw / self.setting.scale;
         });
+
+        if (self.setting.autoPlay) {
+            self.autoPlay();
+        }
+    }
+
+    self.autoPlay = function() {
+        self.playTimer = $interval(function() {
+            rotate('left');
+        }, self.setting.delay);
+    };
+
+    self.stopPlay = function() {
+        $interval.cancel(self.playTimer);
     };
 
     self.addSlide = function(slide, element) {
