@@ -32,11 +32,16 @@ angular.module('myCarousel', [])
         'slideWidth': 270,//set for default. will change after first slide insertion
         'slideHeight': 360,//set for default. will change after first slide insertion
         'scale': 0.9,
-        'opacity': 0.2,
+        'opacity': 0,
         'speed': 500,
         'autoPlay': true,
         'delay': 3000
     };
+    var setting = this.poster.attr('data-setting');
+    if (setting && setting !== '') {
+        setting = angular.toJson(setting);
+    }
+    angular.extend(self.setting, setting);
 
     function rotate(dir) {
         if (dir === 'left') {
