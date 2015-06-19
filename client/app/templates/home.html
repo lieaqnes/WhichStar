@@ -7,15 +7,20 @@
                 </slide>
             </carousel>
             <div class="image-box"></div>
-            <div class="image-button">
+            <div class="image-button" ng-click="usePhoto()">
                 <span>Use this photo</span>
             </div>
         </div>
-        <div class="upload-button"></div>
+        <div class="upload-button" ng-click="uploadPhoto()">
+            <img src="/img/browse-icon.svg">
+            <span>Upload your photos</span>
+        </div>
     </div>
-    <div class="photo-analyse">
-        <div class="result-name">You look like AAA very much.</div>
-        <div class="result-photo">photo</div>
-        <div class="result-introduction">she is .....</div>
+    <div class="photo-analyse" ng-show="res">
+        <div class="result-name">You look like {{response.name}} very much.</div>
+        <div class="result-photo">
+            <img src="{{response.photoURL}}">
+        </div>
+        <div class="result-introduction">{{response.intro}}</div>
     </div>
 </div>

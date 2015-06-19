@@ -7,6 +7,7 @@ angular.module('myCarousel', [])
         initCarcousel($element);
         currentIndex = 0;
     });
+
     $scope.left = function() {
         rotate('left');
     };
@@ -14,14 +15,12 @@ angular.module('myCarousel', [])
         rotate('right');
     };
     $scope.autoPlay = function() {
-        console.log('play');
         if (self.setting.autoPlay) {
             self.autoPlay();
         }
     };
 
     $scope.stopPlay = function() {
-        console.log('stop');
         if (self.setting.autoPlay) {
             self.stopPlay();
         }
@@ -32,20 +31,19 @@ angular.module('myCarousel', [])
         'slideWidth': 270,//set for default. will change after first slide insertion
         'slideHeight': 360,//set for default. will change after first slide insertion
         'scale': 0.9,
-        'opacity': 0,
+        'opacity': 0.2,
         'speed': 500,
         'autoPlay': true,
         'delay': 3000
     };
-    var setting = this.poster.attr('data-setting');
-    if (setting && setting !== '') {
-        setting = angular.toJson(setting);
+    if ($scope.setting) {
+        angular.extend(self.setting, $scope.setting);
     }
-    angular.extend(self.setting, setting);
+
 
     function rotate(dir) {
         if (dir === 'left') {
-            currentIndex = (currentIndex + 1) % self.slides.length;
+            currentIndex = (currentIndex - 1 + self.slides.length) % self.slides.length;
 
             var firstItem = self.slides[0].$element,
                 fwidth = firstItem.css('width'),
@@ -86,7 +84,7 @@ angular.module('myCarousel', [])
             });
         }
         else if (dir === 'right') {
-            currentIndex = (currentIndex - 1 + self.slides.length) % self.slides.length;
+            currentIndex = (currentIndex + 1) % self.slides.length;
 
             var lastItem = self.slides[self.slides.length - 1].$element,
                 fwidth = lastItem.css('width'),
@@ -205,6 +203,9 @@ angular.module('myCarousel', [])
     self.addSlide = function(slide, element) {
         slide.$element = element;
         slides.push(slide);
+    };
+    $scope.getCurrentSlide = function() {
+        return self.slides[currentIndex].imageurl;
     };
 }])
 .directive('carousel', function() {
