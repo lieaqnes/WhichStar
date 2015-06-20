@@ -1,4 +1,9 @@
-var app = angular.module('whichStarApp', ['ui.router', 'IndexCtrls', 'ngAnimate']);
+var app = angular.module('whichStarApp', [
+  'ui.router',
+  'IndexCtrls',
+  'ngAnimate',
+  'whichStarServices'
+]);
 
 app.run(function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;

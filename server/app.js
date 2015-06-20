@@ -4,10 +4,21 @@ var app = express();
 
 app.listen(port);
 
+app.all('*', function(request, response, next) {
+    response.header('Access-Control-Allow-Origin', '*');
+    response.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    response.header('Access-Control-Allow-Headers', 'Content-Type');
+    response.header('Access-Control-Allow-Methods', 'GET');
+    response.header('Access-Control-Allow-Methods', 'POST');
+    response.header('Access-Control-Allow-Methods', 'PUT');
+    response.header('Access-Control-Allow-Methods', 'DELETE');
+    response.header('Access-Control-Allow-Methods', 'OPTIONS');
+    next();
+});
+
 app.get('/imageList', function(req, res) {
     console.log('API: imageList');
-    res.send(200, {
-        'imageURL': [
+    res.send(200, [
             '/img/1.jpg',
             '/img/2.jpg',
             '/img/3.jpg',
@@ -18,7 +29,7 @@ app.get('/imageList', function(req, res) {
             '/img/8.jpg',
             '/img/9.jpg'
         ]
-    });
+    );
 });
 
 app.get('/getStarInfoByURL/:url', function(req, res) {
