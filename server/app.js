@@ -40,3 +40,15 @@ app.get('/getStarInfoByURL/:url', function(req, res) {
         'intro': 'she is .....'
     });
 });
+
+// app.post('/a', function(req, res) {
+//     //var tmp_path = req.aaa.path;
+//     JSON.stringify(req.aaa);
+//     debugger;
+//     console.log('API: a ' + JSON.stringify(req.aaa));
+//     res.send(200, {
+//         'status': 'success'
+//     });
+// });
+
+//call in the fontend

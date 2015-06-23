@@ -13,6 +13,12 @@
             margin-bottom: 10px;
             text-align: center;
             max-width: 1440px;
+            .item {
+                @include blur(2);
+                &.active {
+                    @include blur(0);
+                }
+            }
             .image-box{
                 z-index: 100;
                 top: -10px;
@@ -52,6 +58,7 @@
                 height: 30px;
                 vertical-align: middle;
             }
+            display: block;
             margin: 30px auto;
             width: 270px;
             height: 40px;
@@ -59,6 +66,18 @@
             text-align: center;
             line-height: 40px;
             background-color: $light-green;
+            #uploadImage {
+                height: 0;
+                width: 0;
+                visibility: hidden;
+            }
+        }
+    }
+    .photo-analyse {
+        max-width: 800px;
+        margin: 0 auto;
+        .result-photo {
+            float: right;
         }
     }
 }

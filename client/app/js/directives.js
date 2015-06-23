@@ -42,6 +42,7 @@ angular.module('myCarousel', [])
 
 
     function rotate(dir) {
+        slides[currentIndex].$element.removeClass('active');
         if (dir === 'left') {
             currentIndex = (currentIndex - 1 + self.slides.length) % self.slides.length;
 
@@ -126,6 +127,7 @@ angular.module('myCarousel', [])
                 opacity: fopacity
             });
         }
+        slides[currentIndex].$element.addClass('active');
 
     }
 
@@ -141,7 +143,7 @@ angular.module('myCarousel', [])
             width: self.setting.width + 'px',
             height: self.setting.height + 'px'
         });
-
+        slides[0].$element.addClass('active');
         //set the first slide
         slides[0].$element.css({
             top: h + 'px',
