@@ -9,11 +9,13 @@ var StarSchema = new mongoose.Schema({
 
 StarSchema.statics = {
   findByFaceId: function(id, cb) {
+    console.log('findByFaceId');
     return this.findOne({face_id: id})
     .exec(cb);
   },
-  findByUrl: function(image_url, cb) {
-    return this.findOne({image_url: image_url})
+  findByUrl: function(url, cb) {
+    console.log('findByUrl');
+    return this.findOne({image_url: url})
     .exec(cb);
   }
 };

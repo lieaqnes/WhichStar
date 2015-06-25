@@ -18,6 +18,8 @@ app.all('*', function(request, response, next) {
     response.header('Access-Control-Allow-Methods', 'PUT');
     response.header('Access-Control-Allow-Methods', 'DELETE');
     response.header('Access-Control-Allow-Methods', 'OPTIONS');
+    if (request.method === 'OPTIONS')
+        return response.send(200);
     next();
 });
 
@@ -39,38 +41,30 @@ app.get('/imageList', function(req, res) {
 
 app.get('/getStarInfoByURL/:url', function(req, res) {
     console.log('API: getStarInfoByURL ' + req.params.url);
-    res.send(200, {
-        'name': 'AAA',
-        'photoURL': '/img/1.jpg',
-        'intro': 'she is .....'
+    Star.findByUrl(req.params.url, function(err, star) {
+        console.log(star);
+        res.send(200, {
+            'name': star.name,
+            'photoURL': star.image_url,
+            'intro': star.info
+        });
     });
 });
 
 app.get('/getStarInfoByFaceId/:faceId', function(req, res) {
     console.log('API: getStarInfoByFaceId ' + req.params.faceId);
-    if (req.params.faceId === '20b316fbee5128b5e1fbc3c44708d100') {
-        Star.findByFaceId('test', function(err, star) {
-            res.send(200, {
-                'name': star.name,
-                'photoURL': '/img/' + star.image_url,
-                'intro': star.info
-            });
-        });
-    }
-    else {
+    Star.findByFaceId(req.params.faceId, function(err, star) {
+        console.log(star);
         res.send(200, {
-            'name': 'AAA',
-            'photoURL': '/img/1.jpg',
-            'intro': 'she is .....'
+            'name': star.name,
+            'photoURL': star.image_url,
+            'intro': star.info
         });
-    }
+    });
 });
 
-app.post('/a', function(req, res) {
-    //var tmp_path = req.aaa.path;
-    JSON.stringify(req.aaa);
-    debugger;
-    console.log('API: a ' + JSON.stringify(req.aaa));
+app.post('/saveStar', function(req, res) {
+    console.log(req.body);
     res.send(200, {
         'status': 'success'
     });
