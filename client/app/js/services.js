@@ -27,3 +27,16 @@ whichStarServices.factory('getStarInfo', ['$resource',
     });
   }
 ]);
+whichStarServices.factory('getStar', ['$resource',
+  function($resource) {
+    return $resource(baseUrl + 'getStarInfoByFaceId/:faceId', {}, {
+        query: {
+            method: 'GET',
+            params: {
+                faceId: 'faceId'
+            },
+            isArray: false
+        }
+    });
+  }
+]);
